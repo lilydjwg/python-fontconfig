@@ -1,7 +1,6 @@
 # vim: set fileencoding=utf-8:
 import sys
-from distutils.core import setup
-from distutils.extension import Extension
+from setuptools import setup, Extension
 
 def ext_modules(build=False):
   if build:
