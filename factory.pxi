@@ -25,6 +25,10 @@ cpdef query(family='', lang='', with_index=False):
   else:
     os = FcObjectSetBuild(FC_CHARSET, FC_FILE, NULL)
   fs = FcFontList(<FcConfig*>0, pat, os)
+  FcPatternDestroy(pat)
+  pat = NULL
+  FcObjectSetDestroy(os)
+  os = NULL
   if fs is NULL or fs.nfont < 1:
     return lst
 
@@ -44,10 +48,6 @@ cpdef query(family='', lang='', with_index=False):
       else:
         lst.append((<char*>file).decode('utf8'))
 
-  FcPatternDestroy(pat)
-  pat = NULL
-  FcObjectSetDestroy(os)
-  os = NULL
   FcCharSetDestroy(cs)
   cs = NULL
   FcFontSetDestroy(fs)

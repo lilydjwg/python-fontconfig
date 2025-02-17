@@ -4,7 +4,7 @@ from setuptools import setup, Extension
 
 def ext_modules(build=False):
   if build:
-    sources = ['fontconfig.pyx', 'fontconfig.pxi', 'factory.pxi']
+    sources = ['fontconfig.pyx']
   else:
     sources = ['fontconfig.c']
   ext = [Extension('fontconfig', sources, libraries=["fontconfig"])]

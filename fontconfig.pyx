@@ -189,7 +189,7 @@ cdef class FcFont:
       if ret:
         return ret
 
-      l = locale.getdefaultlocale()[0].lower().replace('_', '-')
+      l = locale.getlocale()[0].lower().replace('_', '-')
       try:
         family = self.family.get(l, None)
         if family is None:
