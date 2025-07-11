@@ -131,6 +131,9 @@ cdef class FcFont:
   property weight:
     def __get__(self):
       return self._getattr(b'weight', 'int')
+  property opentype_weight:
+    def __get__(self):
+      return FcWeightToOpenTypeDouble(self.weight)
   property width:
     def __get__(self):
       return self._getattr(b'width', 'int')

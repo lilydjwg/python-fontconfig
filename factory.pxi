@@ -2,7 +2,7 @@
 # @Author: Vayn a.k.a. VT <vayn@vayn.de>
 # @Name: factory.pxi
 
-cpdef query(family='', lang='', with_index=False):
+cpdef query(family='', lang='', postscriptname='', with_index=False):
   '''
   Produce font object list for the queried language
   '''
@@ -13,10 +13,15 @@ cpdef query(family='', lang='', with_index=False):
     FcObjectSet *os = NULL
     list lst = []
 
-  if lang:
+  if lang and postscriptname:
+    l_lang = ('%s:lang=%s:postscriptname=%s' % (family, lang, postscriptname))
+  elif lang:
     l_lang = ('%s:lang=%s' % (family, lang))
+  elif postscriptname:
+    l_lang = ('%s:postscriptname=%s' % (family, postscriptname))
   else:
     l_lang = family
+
   l_lang = l_lang.encode('utf-8')
   strpat = <FcChar8*>(<char*>l_lang)
   pat = FcNameParse(strpat)

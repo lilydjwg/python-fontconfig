@@ -107,6 +107,7 @@ cdef extern from "fontconfig/fontconfig.h":
   void FcValuePrint(FcValue)
   int FcGetVersion()
   int FcUtf8ToUcs4(FcChar8 *, FcChar32 *, int)
+  double FcWeightToOpenTypeDouble(double);
 
 cdef extern from "fcmore.h":
   ctypedef struct FcStrSet:
