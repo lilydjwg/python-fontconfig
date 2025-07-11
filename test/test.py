@@ -27,6 +27,15 @@ class FontListTestCase(unittest.TestCase):
     font = fonts[0]
     self.assertIsInstance(font, str)
 
+  def test_query_ps_name(self):
+    """Query by postscript name"""
+    fonts = fontconfig.query(postscriptname="DejaVuSerif", lang="en")
+    self.assertIsInstance(fonts, list)
+    self.assertEqual(len(fonts), 1)
+    font = fonts[0]
+    self.assertIsInstance(font, str)
+    self.assertTrue(font.endswith("DejaVuSerif.ttf"))
+
 @unittest.skipIf(condition != 'y', reason)
 class FcFontTestCase(unittest.TestCase):
   fonts = fontconfig.query(family='dejavu serif', lang='en')
@@ -49,6 +58,16 @@ class FcFontTestCase(unittest.TestCase):
     fc = fontconfig.FcFont(self.font.file)
     char = '永' if pyver == 3 else '永'.decode('utf8')
     self.assertTrue(fc.has_char(char))
+
+  def test_weight(self):
+    """Test the font weight"""
+    fc = fontconfig.FcFont(self.font.file)
+    self.assertEqual(fc.weight, 80)
+
+  def test_opentype_weight(self):
+    """Test the opentype font weight"""
+    fc = fontconfig.FcFont(self.font.file)
+    self.assertEqual(fc.opentype_weight, 400.0)
 
 
 if __name__ == '__main__':
