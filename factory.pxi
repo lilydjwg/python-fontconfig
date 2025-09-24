@@ -53,8 +53,6 @@ cpdef query(family='', lang='', postscriptname='', with_index=False):
       else:
         lst.append((<char*>file).decode('utf8'))
 
-  FcCharSetDestroy(cs)
-  cs = NULL
   FcFontSetDestroy(fs)
   fs = NULL
   return lst
