@@ -74,7 +74,6 @@ cdef extern from "fontconfig/fontconfig.h":
     pass
 
   FcPattern * FcPatternCreate()
-  FcPattern * FcFreeTypeQuery(FcChar8 *, int, FcBlanks *, int *)
   FcPattern * FcNameParse(FcChar8 *)
   void FcPatternPrint(FcPattern *)
   void FcPatternDestroy(FcPattern *)
@@ -115,3 +114,6 @@ cdef extern from "fcmore.h":
     int num
     int size
     FcChar8 **strs
+
+cdef extern from "fontconfig/fcfreetype.h":
+  FcPattern * FcFreeTypeQuery(FcChar8 *, int, FcBlanks *, int *)

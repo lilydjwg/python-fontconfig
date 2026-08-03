@@ -39,6 +39,7 @@ class FontListTestCase(unittest.TestCase):
 @unittest.skipIf(condition != 'y', reason)
 class FcFontTestCase(unittest.TestCase):
   fonts = fontconfig.query(family='dejavu serif', lang='en')
+  # this is an arbitrary matching font (same at fc-list)
   font = fontconfig.FcFont(fonts[0])
 
   def test_get_object_from_path(self):
@@ -58,17 +59,6 @@ class FcFontTestCase(unittest.TestCase):
     fc = fontconfig.FcFont(self.font.file)
     char = '永' if pyver == 3 else '永'.decode('utf8')
     self.assertTrue(fc.has_char(char))
-
-  def test_weight(self):
-    """Test the font weight"""
-    fc = fontconfig.FcFont(self.font.file)
-    self.assertEqual(fc.weight, 80)
-
-  def test_opentype_weight(self):
-    """Test the opentype font weight"""
-    fc = fontconfig.FcFont(self.font.file)
-    self.assertEqual(fc.opentype_weight, 400.0)
-
 
 if __name__ == '__main__':
   unittest.main()

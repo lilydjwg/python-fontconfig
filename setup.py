@@ -5,7 +5,8 @@ def ext_modules(build=False):
     sources = ['fontconfig.pyx']
   else:
     sources = ['fontconfig.c']
-  ext = [Extension('fontconfig', sources, libraries=["fontconfig"])]
+  ext = [Extension('fontconfig', sources, libraries=["fontconfig"],
+                   include_dirs=["/usr/include/freetype2"])]
   return ext
 
 args = {}

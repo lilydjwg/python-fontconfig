@@ -4,7 +4,7 @@
 
 cpdef query(family='', lang='', postscriptname='', with_index=False):
   '''
-  Produce font object list for the queried language
+  Produce font object list for the queried language. Same as fc-list.
   '''
   cdef:
     FcChar8 *strpat
